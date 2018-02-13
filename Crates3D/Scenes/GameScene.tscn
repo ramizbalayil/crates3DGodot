@@ -1,0 +1,372 @@
+[gd_scene load_steps=16 format=1]
+
+[ext_resource path="res://Scripts/GameScene.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/gui.gd" type="Script" id=2]
+[ext_resource path="res://Assets/pngs/bar_frame.png" type="Texture" id=3]
+[ext_resource path="res://Assets/pngs/bar.png" type="Texture" id=4]
+[ext_resource path="res://Assets/pngs/bar_mask.png" type="Texture" id=5]
+[ext_resource path="res://Assets/fonts/acknowtt.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/pngs/menu_button.png" type="Texture" id=7]
+[ext_resource path="res://Assets/pngs/pause_button.png" type="Texture" id=8]
+[ext_resource path="res://Assets/pngs/play_button.png" type="Texture" id=9]
+[ext_resource path="res://Assets/cubemap_lowpoly/skybox.cube" type="CubeMap" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 210
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 82
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 6 )
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "show_menu_button"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("menu:transform/pos")
+tracks/0/interp = 2
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 900 ), Vector2( 30, 740 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "show_menu_texture_button"
+length = 0.5
+loop = false
+step = 0.1
+
+[sub_resource type="Environment" id=5]
+
+ambient_light/enabled = false
+ambient_light/color = Color( 0, 0, 0, 1 )
+ambient_light/energy = 1.0
+fxaa/enabled = false
+background/mode = 4
+background/color = Color( 0, 0, 0, 1 )
+background/cubemap = ExtResource( 10 )
+background/energy = 1.0
+background/scale = 1.0
+background/glow = 0.0
+background/canvas_max_layer = null
+glow/enabled = false
+glow/blur_passes = 1
+glow/blur_scale = 1
+glow/blur_strength = 1
+glow/blur_blend_mode = null
+glow/bloom = 0.0
+glow/bloom_treshold = 0.5
+dof_blur/enabled = false
+dof_blur/blur_passes = 1
+dof_blur/begin = 100.0
+dof_blur/range = 10.0
+hdr/enabled = false
+hdr/tonemapper = 0
+hdr/exposure = 0.4
+hdr/white = 1.0
+hdr/glow_treshold = 0.95
+hdr/glow_scale = 0.2
+hdr/min_luminance = 0.4
+hdr/max_luminance = 8.0
+hdr/exposure_adj_speed = 0.5
+fog/enabled = false
+fog/begin = 100.0
+fog/begin_color = Color( 0, 0, 0, 1 )
+fog/end_color = Color( 0, 0, 0, 1 )
+fog/attenuation = 1.0
+fog/bg = true
+bcs/enabled = false
+bcs/brightness = 1.0
+bcs/contrast = 1.0
+bcs/saturation = 1.0
+srgb/enabled = false
+
+[node name="GameScene" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 1 )
+
+[node name="gui" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = -3.0
+margin/right = 0.0
+margin/bottom = 3.0
+script/script = ExtResource( 2 )
+
+[node name="bar_frame" type="TextureFrame" parent="gui"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 318.0
+margin/top = 49.0
+margin/right = 1606.0
+margin/bottom = 191.0
+texture = ExtResource( 3 )
+stretch_mode = 0
+
+[node name="bar" type="TextureFrame" parent="gui"]
+
+visibility/light_mask = 2
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 329.0
+margin/top = 48.0
+margin/right = 1599.0
+margin/bottom = 190.0
+texture = ExtResource( 4 )
+stretch_mode = 0
+
+[node name="Light2D" type="Light2D" parent="gui"]
+
+transform/pos = Vector2( 960, 540 )
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 3
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 2
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="Tween" type="Tween" parent="gui"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="score" type="Label" parent="gui"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 772.0
+margin/top = 856.0
+margin/right = 1149.0
+margin/bottom = 1041.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="timer" type="Label" parent="gui"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 772.0
+margin/top = -14.0
+margin/right = 1149.0
+margin/bottom = 171.0
+custom_fonts/font = SubResource( 2 )
+text = "30"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="menu" type="TouchScreenButton" parent="gui"]
+
+process/pause_mode = 2
+transform/pos = Vector2( 30, 900 )
+transform/scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 7 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="pause" type="TouchScreenButton" parent="gui"]
+
+process/pause_mode = 2
+visibility/visible = false
+transform/pos = Vector2( 30, 900 )
+transform/scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 8 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="play" type="TouchScreenButton" parent="gui"]
+
+process/pause_mode = 2
+transform/pos = Vector2( 30, 900 )
+transform/scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 9 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gui"]
+
+process/pause_mode = 2
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/show_menu_button = SubResource( 3 )
+anims/show_menu_texture_button = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="gimball" type="Spatial" parent="."]
+
+editor/display_folded = true
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 0.752533, 0.658555, 0, -0.658555, 0.752533, 0, 0, 0 )
+
+[node name="innergimball" type="Spatial" parent="gimball"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="gimball/innergimball"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 0.999984, 0.00564882, 0, -0.00564882, 0.999984, 0, -2.46776, 54.2654 )
+projection = 0
+fov = 60.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = true
+visible_layers = 1048575
+environment = SubResource( 5 )
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="Tween" type="Tween" parent="gimball"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.600733, 0.334067, -0.726305, -0.290856, 0.937575, 0.190672, 0.744663, 0.0967066, 0.660398, -31.1506, 4.20014, 22.6009 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.110015, -0.484374, 0.867917, -0.269827, 0.825868, 0.49511, -0.956604, -0.288657, -0.039839, 29.0182, 6.32326, 26.1808 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+[node name="DirectionalLight1" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.798635, 0.100117, -0.59343, -0.144969, 0.925025, 0.351158, 0.584095, 0.366476, -0.724244, -28.7371, 9.09408, -40.401 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+

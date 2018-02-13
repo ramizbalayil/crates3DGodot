@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Assets/pngs/blue_bg.png" type="Texture" id=1]
+[ext_resource path="res://Assets/fonts/acknowtt.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/pngs/return_button.png" type="Texture" id=3]
+[ext_resource path="res://Assets/pngs/menu_button.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 200
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 100
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[node name="GameOver" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+
+[node name="GO" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 383.0
+margin/top = 252.0
+margin/right = 1538.0
+margin/bottom = 428.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER !!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SCORE" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 763.0
+margin/top = 420.0
+margin/right = 1157.0
+margin/bottom = 508.0
+custom_fonts/font = SubResource( 2 )
+text = "SCORE: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="return" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 760, 550 )
+normal = ExtResource( 3 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="menu" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 1010, 550 )
+normal = ExtResource( 4 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+

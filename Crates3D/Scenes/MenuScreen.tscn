@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Scripts/MenuScreen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/acknowtt.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/pngs/play_button.png" type="Texture" id=3]
+[ext_resource path="res://Assets/pngs/exit_button.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/rotating_hex_land.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 220
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[node name="MenuScreen" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="Title" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 50.0
+margin/top = 250.0
+margin/right = 1094.0
+margin/bottom = 444.0
+custom_fonts/font = SubResource( 1 )
+text = "CRATES 3D"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Menu" type="HBoxContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 130.0
+margin/top = 620.0
+margin/right = 430.0
+margin/bottom = 660.0
+custom_constants/separation = 300
+alignment = 0
+
+[node name="Panel" type="Panel" parent="Menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 40.0
+
+[node name="play" type="TouchScreenButton" parent="Menu/Panel"]
+
+normal = ExtResource( 3 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="Panel1" type="Panel" parent="Menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 300.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 40.0
+
+[node name="settings" type="TouchScreenButton" parent="Menu/Panel1"]
+
+transform/pos = Vector2( -40, 0 )
+normal = ExtResource( 4 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="rotating_hex_land" parent="." instance=ExtResource( 5 )]
+
+[connection signal="released" from="Menu/Panel/play" to="." method="_on_play_released"]
+
+[connection signal="released" from="Menu/Panel1/settings" to="." method="_on_settings_released"]
+
+
